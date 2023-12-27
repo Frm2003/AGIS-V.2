@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.InheritanceType"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Inheritance"/>
+    <fullyQualifiedTypeName name="org.hibernate.annotations.JoinColumnOrFormula"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="java.sql.Time"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.IdClass"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Embeddable"/>
+    <fullyQualifiedTypeName name="com.br.fatec.AGIS.model.pk.MatriculaPk"/>
+    <fullyQualifiedTypeName name="java.io.Serializable"/>
+    <fullyQualifiedTypeName name="com.br.fatec.AGIS.model.pk.ChamadaPk"/>
+    <fullyQualifiedTypeName name="com.br.fatec.AGIS.model.Data"/>
+    <fullyQualifiedTypeName name="com.br.fatec.AGIS.model.GradeCurricular"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+</qualifiedTypeNameHistroy>

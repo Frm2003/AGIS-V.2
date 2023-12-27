@@ -1,0 +1,27 @@
+package com.br.fatec.AGIS.model;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@lombok.Data
+@Entity
+@Table
+public class Data {
+	@Id
+	@Column(nullable = false)
+	private Long cod;
+	
+	@Column(nullable = false, columnDefinition = "DATE")
+	private LocalDate data;
+	
+	@Column(nullable = false, length = 100)
+	private String descricao;
+	
+	@Column(nullable = false)
+	private boolean ehFeriado;
+	private int ano;
+}

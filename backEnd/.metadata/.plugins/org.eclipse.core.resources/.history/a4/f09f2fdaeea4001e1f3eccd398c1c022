@@ -1,0 +1,11 @@
+package com.br.fatec.AGIS.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@lombok.Data
+@Entity
+@Table
+public class Professor {
+	
+}

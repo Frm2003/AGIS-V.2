@@ -1,0 +1,8 @@
+package com.br.fatec.AGIS.model.pk;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class MatriculaPk {
+
+}

@@ -1,0 +1,11 @@
+package com.br.fatec.AGIS.model.pk;
+
+import java.io.Serializable;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class MatriculaPk implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+}

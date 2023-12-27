@@ -1,0 +1,9 @@
+package com.br.fatec.AGIS.repository;
+
+import jakarta.persistence.Entity;
+
+@lombok.Data
+@Entity
+public class Disciplina {
+
+}

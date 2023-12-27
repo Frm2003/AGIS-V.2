@@ -1,0 +1,14 @@
+package com.br.fatec.AGIS.model;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+
+@lombok.Data
+@Entity
+public class Data {
+	private Long cod;
+	private LocalDate data;
+	private String descricao;
+	
+}
