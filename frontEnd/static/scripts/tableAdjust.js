@@ -1,4 +1,4 @@
-function load() {
+function loadTable() {
     const ths = document.querySelectorAll('th')
     const btsTable = document.querySelectorAll('.btTable')
 

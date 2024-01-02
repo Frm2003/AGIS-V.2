@@ -1,5 +1,7 @@
 package com.br.fatec.AGIS.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,9 @@ public class Curso {
 	
 	@Column(nullable = false, length = 100)
 	private String nome;
+	
+	@Column(nullable = false, precision = 3, scale = 2)
+	private BigDecimal cargaHoraria;
 
 	@Column(nullable = false)
 	private int cargaHorario; 
@@ -30,4 +35,5 @@ public class Curso {
 	
 	@Column(nullable = false, length = 10)
 	private String turno;
+	
 }

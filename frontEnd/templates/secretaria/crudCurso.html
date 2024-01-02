@@ -15,10 +15,31 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="../../static/scripts/tableAdjust.js"></script>
+    <script src="../../static/scripts/navsLoad.js"></script>
+    <script>
+        function teste() {
+            fetch('http:/localhost:8080/curso')
+                .then(response => {
+                    response.headers
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Dados recebidos:', data);
+                    // Faça algo com os dados, se necessário
+                })
+                .catch(error => {
+                    console.error('Erro na solicitação:', error.message);
+                    // Trate o erro, se necessário
+                });
+        }
+    </script>
 </head>
 
-<body onload="load()">
-    <object data="navSecretaria.html"></object>
+<body onload="loadNav(), loadTable()">
+    <nav></nav>
     <div class="site">
         <div class="aling">
             <h2>Manter Curso</h2>
@@ -46,10 +67,10 @@
                     </div>
                 </div>
                 <div class="alingBts">
-                    <button type="submit" class="btForm">Criar</button>
                     <button type="submit" class="btForm">Atualizar</button>
                 </div>
             </form>
+            <button type="submit" class="btForm" onclick="teste()">Criar</button>
             <div class="col">
                 <form class="listForm">
                     <input type="text" name="context"><button><i class="fas fa-search"></i></button>

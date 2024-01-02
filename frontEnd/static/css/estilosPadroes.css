@@ -21,7 +21,6 @@ object {
 .title {
     align-items: center;
     display: flex;
-
 }
 
 .aling {
@@ -37,4 +36,12 @@ object {
     background: rgb(214, 214, 214);
     margin-top: 0.5em;
     padding: 0.5em;
+}
+
+nav {
+    z-index: 1;
+    box-shadow: -1px 6px 22px 1px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: -1px 6px 22px 1px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: -1px 6px 22px 1px rgba(0, 0, 0, 0.25);
+    margin-bottom: 0.75em;
 }
