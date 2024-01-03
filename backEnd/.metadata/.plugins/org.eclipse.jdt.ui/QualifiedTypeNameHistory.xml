@@ -33,4 +33,8 @@
     <fullyQualifiedTypeName name="com.br.fatec.AGIS.service.CursoService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.Filter"/>
 </qualifiedTypeNameHistroy>

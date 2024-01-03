@@ -16,61 +16,43 @@
         crossorigin="anonymous"></script>
     <script src="../../static/scripts/tableAdjust.js"></script>
     <script src="../../static/scripts/navsLoad.js"></script>
-    <script>
-        function teste() {
-            fetch('http:/localhost:8080/curso')
-                .then(response => {
-                    response.headers
-                    if (!response.ok) {
-                        throw new Error('Erro na resposta do servidor');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Dados recebidos:', data);
-                    // Faça algo com os dados, se necessário
-                })
-                .catch(error => {
-                    console.error('Erro na solicitação:', error.message);
-                    // Trate o erro, se necessário
-                });
-        }
-    </script>
+    <script src="../../static/scripts/crudCurso.js"></script>
 </head>
 
-<body onload="loadNav(), loadTable()">
+<body onload="loadNav(), loadTable(), selectAll()">
     <nav></nav>
     <div class="site">
         <div class="aling">
             <h2>Manter Curso</h2>
-            <form class="crudForm col">
+            <div class="crudForm col" id="formCurso">
                 <div class="campos">
+                    <input type="hidden" name="cod">
                     <div class="campo">
                         <label>Nome</label>
-                        <input type="text" name="nome">
+                        <input type="text" id="nome" name="nome">
                     </div>
                     <div class="campo">
                         <label>Carga Horaria</label>
-                        <input type="number" min="0" name="cargaHoraria">
+                        <input type="number" min="0" id="cargaHoraria" name="cargaHoraria">
                     </div>
                     <div class="campo">
                         <label>Sigla</label>
-                        <input type="text" name="sigla">
+                        <input type="text" id="sigla" name="sigla">
                     </div>
                     <div class="campo">
                         <label>Enade</label>
-                        <input type="number" min="0" max="5" step="0.1" name="enade">
+                        <input type="number" min="0" max="5" step="0.1" id="enade" name="enade">
                     </div>
                     <div class="campo">
                         <label>Turno</label>
-                        <input type="text" name="turno">
+                        <input type="text" id="turno" name="turno">
                     </div>
                 </div>
                 <div class="alingBts">
-                    <button type="submit" class="btForm">Atualizar</button>
+                    <input type="submit" class="btForm" value="Criar" onclick="insert()">
+                    <button type="submit" class="btForm" onclick="update()">Atualizar</button>
                 </div>
-            </form>
-            <button type="submit" class="btForm" onclick="teste()">Criar</button>
+            </div>
             <div class="col">
                 <form class="listForm">
                     <input type="text" name="context"><button><i class="fas fa-search"></i></button>
@@ -79,6 +61,9 @@
                     <table>
                         <thead>
                             <tr>
+                                <th>
+                                    <div>Cod</div>
+                                </th>
                                 <th>
                                     <div>Nome</div>
                                 </th>
@@ -100,29 +85,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div>Nome</div>
-                                </td>
-                                <td>
-                                    <div>Carga Horaria</div>
-                                </td>
-                                <td>
-                                    <div>Sigla</div>
-                                </td>
-                                <td>
-                                    <div>Enade</div>
-                                </td>
-                                <td>
-                                    <div>Turno</div>
-                                </td>
-                                <td>
-                                    <div><button type="submit" class="btForm btTable">Editar</button></div>
-                                </td>
-                                <td>
-                                    <div><button type="submit" class="btForm btTable">Remover</button></div>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>

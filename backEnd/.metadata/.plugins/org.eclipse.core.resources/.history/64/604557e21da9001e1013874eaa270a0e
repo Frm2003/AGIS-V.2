@@ -1,8 +1,0 @@
-package com.br.fatec.AGIS.controller;
-
-import org.springframework.stereotype.Controller;
-
-@RestController
-public class CursoController {
-
-}

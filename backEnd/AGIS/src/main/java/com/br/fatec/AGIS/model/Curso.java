@@ -23,15 +23,15 @@ public class Curso {
 	
 	@Column(nullable = false, length = 100)
 	private String nome;
-	
-	@Column(nullable = false, precision = 3, scale = 2)
-	private BigDecimal cargaHoraria;
 
 	@Column(nullable = false)
 	private int cargaHorario; 
 	
 	@Column(nullable = false, length = 10)
 	private String sigla; 
+	
+	@Column(nullable = false, precision = 3, scale = 2)
+	private BigDecimal enade;
 	
 	@Column(nullable = false, length = 10)
 	private String turno;

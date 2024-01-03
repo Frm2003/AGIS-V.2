@@ -1,0 +1,31 @@
+package com.br.fatec.AGIS;
+
+import java.io.IOException;
+
+import org.springframework.context.annotation.Configuration;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+
+@Configuration
+public class CorsFilter implements Filter {
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        chain.
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Método de inicialização (pode ser deixado em branco)
+    }
+
+    @Override
+    public void destroy() {
+        // Método de destruição (pode ser deixado em branco)
+    }
+}
