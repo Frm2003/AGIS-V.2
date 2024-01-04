@@ -4,51 +4,58 @@ import java.time.LocalDate;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import lombok.Builder;
 
-@lombok.Data
 @Entity
-@Table
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Aluno {
-	@Id
-	@Column(nullable = false, unique = true, length = 15)
+@DiscriminatorValue("A")
+public class Aluno extends Usuario{
+	@Column(unique = true, length = 15)
 	private String ra;
 	
-	@Column(nullable = false, length = 100)
+	@Column(name = "nome_social", length = 100)
 	private String nomeSocial;
 	
-	@Column(nullable = false, columnDefinition = "DATE")
+	@Column(name = "data_conclusao_2_grau", columnDefinition = "DATE")
 	private LocalDate dataConc2grau;
 	
-	@Column(nullable = false, length = 100)
+	@Column(name = "instituicao_conclusao_2_grau", length = 100)
 	private String instConc2grau;
 	
-	@Column(nullable = false)
+	@Column(name = "pontuacao_vestibular")
 	private int ptVestibular;
 	
-	@Column(nullable = false)
+	@Column(name = "posicao_vestibular")
 	private int posVestibular;
 	
-	@Column(nullable = false, columnDefinition = "DATE")
+	@Column(name = "data_matricula", columnDefinition = "DATE")
 	private LocalDate dataMatricula;
 
-	@Column(nullable = false, columnDefinition = "DATE")
+	@Column(name = "data_limite_matricula", columnDefinition = "DATE")
 	private LocalDate dataLimiteMatricula;
 	
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Curso.class, fetch = FetchType.LAZY)
-	@JoinColumn(nullable = false, name = "codCurso")
+	@JoinColumn(name = "cod_curso")
 	private Curso curso;
 	
-	@OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class, fetch = FetchType.LAZY)
-	@JoinColumn(nullable = false, name = "cpf")
-	private Usuario usuario;
+	@Builder
+	public Aluno(String cpf, String nome, LocalDate dataNasc, String emailPessoal, String emailCorp, String situacao,
+			String ra, String nomeSocial, LocalDate dataConc2grau, String instConc2grau, int ptVestibular,
+			int posVestibular, LocalDate dataMatricula, LocalDate dataLimiteMatricula, Curso curso) {
+		super(cpf, nome, dataNasc, emailPessoal, emailCorp, situacao);
+		this.ra = ra;
+		this.nomeSocial = nomeSocial;
+		this.dataConc2grau = dataConc2grau;
+		this.instConc2grau = instConc2grau;
+		this.ptVestibular = ptVestibular;
+		this.posVestibular = posVestibular;
+		this.dataMatricula = dataMatricula;
+		this.dataLimiteMatricula = dataLimiteMatricula;
+		this.curso = curso;
+	}
+	
 }
