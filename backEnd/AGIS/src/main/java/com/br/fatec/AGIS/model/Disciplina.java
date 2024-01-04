@@ -1,5 +1,8 @@
 package com.br.fatec.AGIS.model;
 
+import com.br.fatec.AGIS.dto.DisciplinaDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,11 +15,13 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.NoArgsConstructor;
 
 @lombok.Data
 @Entity
 @Table
 @Inheritance(strategy = InheritanceType.JOINED)
+@NoArgsConstructor
 public class Disciplina {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +37,23 @@ public class Disciplina {
 	@Column(nullable = false)
 	private int semestre; 
 	
+	@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
 	@ManyToOne(cascade = CascadeType.REMOVE, targetEntity = Curso.class, fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false, name = "codCurso")
 	private Curso curso;
+	
+	public Disciplina(DisciplinaDto disciplinaDto, Curso curso) {
+		this.nome = disciplinaDto.nome();
+		this.qtdAulas = disciplinaDto.qtdAulas();
+		this.semestre = disciplinaDto.semestre();
+		this.curso = curso;
+	}
+	
+	public Disciplina(Long cod, DisciplinaDto disciplinaDto, Curso curso) {
+		this.cod = cod;
+		this.nome = disciplinaDto.nome();
+		this.qtdAulas = disciplinaDto.qtdAulas();
+		this.semestre = disciplinaDto.semestre();
+		this.curso = curso;
+	}
 }

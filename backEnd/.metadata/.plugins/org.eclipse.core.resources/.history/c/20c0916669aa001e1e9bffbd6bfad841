@@ -1,0 +1,11 @@
+package com.br.fatec.AGIS.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public record DisciplinaDto(
+		@NotBlank @Size(max = 100) String nome,
+		
+) {
+
+}

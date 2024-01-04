@@ -1,0 +1,63 @@
+package com.br.fatec.AGIS.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.br.fatec.AGIS.dto.CursoDto;
+import com.br.fatec.AGIS.dto.DisciplinaDto;
+import com.br.fatec.AGIS.model.Curso;
+import com.br.fatec.AGIS.model.Disciplina;
+import com.br.fatec.AGIS.repository.DisciplinaRepository;
+
+@Service
+public class DisciplinaService {
+	@Autowired
+	private DisciplinaRepository disciplinaRepository;
+	
+	public List<Disciplina> selectAll() {
+		return disciplinaRepository.findAll();
+	}
+	
+	public Disciplina selectId(Long id) throws Exception {
+		Optional<Disciplina> disciplina = disciplinaRepository.findById(id);
+		if (disciplina.isEmpty()) {
+			throw new Exception("Curso não registrado");
+		}
+
+		return disciplina.get();
+	}
+	
+	public Disciplina insert(DisciplinaDto disciplinaDto) {
+		var disciplinaModel = new Disciplina();
+		BeanUtils.copyProperties(disciplinaDto, disciplinaModel);
+		return disciplinaRepository.save(disciplinaModel);
+	}
+	
+	public Disciplina update(Long id, CursoDto cursoDto) throws Exception {
+		Optional<Disciplina> disciplina = disciplinaRepository.findById(id);
+		if (disciplina.isEmpty()) {
+			throw new Exception("Curso não registrado");
+		}
+
+		var disciplinaModel = disciplina.get();
+		BeanUtils.copyProperties(cursoDto, disciplinaModel);
+
+		return disciplinaRepository.save(disciplinaModel);
+	}
+	
+	public disciplina delete(Long id) throws Exception {
+		Optional<Curso> disciplina = disciplinaRepository.findById(id);
+		if (disciplina.isEmpty()) {
+			throw new Exception("Curso não registrado");
+		}
+
+		var disciplinaModel = disciplina.get();
+		disciplinaRepository.delete(disciplinaModel);
+
+		return disciplinaModel;
+	}
+}

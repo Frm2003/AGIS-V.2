@@ -45,12 +45,17 @@
                     </div>
                     <div class="campo">
                         <label>Turno</label>
-                        <input type="text" id="turno" name="turno">
+                        <select id="select" name="turno">
+                            <option value="default">Selecione o periodo</option>
+                            <option value="Manhã">Manhã</option>
+                            <option value="Tarde">Tarde</option>
+                            <option value="Noite">Noite</option>
+                        </select>
                     </div>
                 </div>
                 <div class="alingBts">
                     <input type="submit" class="btForm" value="Criar" onclick="insert()">
-                    <button type="submit" class="btForm" onclick="update()">Atualizar</button>
+                    <input type="submit" class="btForm" value="Atualizar" onclick="update()">
                 </div>
             </div>
             <div class="col">

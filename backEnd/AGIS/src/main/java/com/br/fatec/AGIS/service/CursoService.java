@@ -3,9 +3,11 @@ package com.br.fatec.AGIS.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.fatec.AGIS.dto.CursoDto;
 import com.br.fatec.AGIS.model.Curso;
 import com.br.fatec.AGIS.repository.CursoRepository;
 
@@ -27,25 +29,22 @@ public class CursoService {
 		return curso.get();
 	}
 
-	public Curso insert(Curso c) {
-		return cursoRepository.save(c);
+	public Curso insert(CursoDto cursoDto) {
+		var cursoModel = new Curso();
+		BeanUtils.copyProperties(cursoDto, cursoModel);
+		return cursoRepository.save(cursoModel);
 	}
 
-	public Curso update(Long id, Curso curso) throws Exception {
-		Optional<Curso> optional = cursoRepository.findById(id);
-
-		if (optional.isEmpty()) {
+	public Curso update(Long id, CursoDto cursoDto) throws Exception {
+		Optional<Curso> curso = cursoRepository.findById(id);
+		if (curso.isEmpty()) {
 			throw new Exception("Curso não registrado");
 		}
 
-		Curso cursoNew = optional.get();
-		cursoNew.setNome(curso.getNome());
-		cursoNew.setCargaHorario(curso.getCargaHorario());
-		cursoNew.setSigla(curso.getSigla());
-		cursoNew.setEnade(curso.getEnade());
-		cursoNew.setTurno(curso.getTurno());
+		var cursoModel = curso.get();
+		BeanUtils.copyProperties(cursoDto, cursoModel);
 
-		return cursoRepository.save(cursoNew);
+		return cursoRepository.save(cursoModel);
 	}
 
 	public Curso delete(Long id) throws Exception {

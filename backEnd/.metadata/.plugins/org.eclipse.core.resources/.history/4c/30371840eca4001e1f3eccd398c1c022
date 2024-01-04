@@ -1,8 +1,0 @@
-package com.br.fatec.AGIS.model;
-
-import jakarta.persistence.Entity;
-
-@Entity
-public class Curso {
-
-}

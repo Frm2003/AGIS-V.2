@@ -16,43 +16,45 @@
         crossorigin="anonymous"></script>
     <script src="../../static/scripts/tableAdjust.js"></script>
     <script src="../../static/scripts/navsLoad.js"></script>
+    <script src="../../static/scripts/crudDisciplina.js"></script>
 </head>
 
-<body onload="loadNav(), loadTable()">
+<body onload="loadNav(), loadTable(), selectAll()">
     <nav></nav>
     <div class="site">
         <div class="aling">
             <h2>Manter Disciplina</h2>
-            <form class="crudForm col">
+            <div class="crudForm col">
                 <div class="campos">
+                    <input type="hidden" name="cod">
                     <div class="campo">
                         <label>Nome</label>
-                        <input type="text">
+                        <input type="text" name="nome">
                     </div>
                     <div class="campo">
                         <label>Quantidade de Aulas</label>
-                        <select>
-                            <option>0</option>
+                        <select id="selectQtdAulas" name="qtdAula" class="select">
+                            <option value="default">0</option>
                             <option>2</option>
                             <option>4</option>
                         </select>
                     </div>
                     <div class="campo">
                         <label>Semestre</label>
-                        <input type="number" min="1" max="10" step="1">
+                        <input type="number" name="semestre" min="1" max="10" step="1">
                     </div>
                     <div class="campo">
                         <label>Curso</label>
-                        <select>
-                            <option>Selecione o curso</option>
+                        <select id="selectCurso" name="curso" class="select">
+                            <option value="default">Selecione o curso</option>
                         </select>
                     </div>
                 </div>
                 <div class="alingBts">
-                    <button type="submit" class="btForm">Criar</button>
-                    <button type="submit" class="btForm">Atualizar</button>
+                    <button type="submit" class="btForm" onclick="insert()">Criar</button>
+                    <button type="submit" class="btForm" onclick="update()">Atualizar</button>
                 </div>
-            </form>
+            </div>
             <div class="col">
                 <form class="listForm">
                     <input type="text" name="context"><button><i class="fas fa-search"></i></button>
@@ -61,6 +63,9 @@
                     <table>
                         <thead>
                             <tr>
+                                <th>
+                                    <div>Cod</div>
+                                </th>
                                 <th>
                                     <div>Nome</div>
                                 </th>
@@ -79,26 +84,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div></div>
-                                </td>
-                                <td>
-                                    <div></div>
-                                </td>
-                                <td>
-                                    <div></div>
-                                </td>
-                                <td>
-                                    <div></div>
-                                </td>
-                                <td>
-                                    <div><button type="submit" class="btForm btTable">Editar</button></div>
-                                </td>
-                                <td>
-                                    <div><button type="submit" class="btForm btTable">Remover</button></div>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>

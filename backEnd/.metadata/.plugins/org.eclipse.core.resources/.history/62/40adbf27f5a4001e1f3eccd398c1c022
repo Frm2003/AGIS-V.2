@@ -1,9 +1,0 @@
-package com.br.fatec.AGIS.model.pk;
-
-import jakarta.persistence.Embeddable;
-
-@lombok.Data
-@Embeddable
-public class ChamadaPk {
-
-}

@@ -1,5 +1,5 @@
 function selectAll() {
-    const url = 'http://localhost:8080/AGIS/curso';
+    const url = 'http://localhost:8080/AGIS/curso'
 
     const configuracaoRequisicao = {
         method: 'GET',
@@ -29,22 +29,24 @@ function selectAll() {
                 }
 
                 for (let a = 0; a < 2; a++) {
-                    const text = ['Editar', 'Remover']
                     let td = document.createElement('td')
                     let div = document.createElement('div')
                     let button = document.createElement('button')
 
-                    button.textContent = text[a]
-                    button.setAttribute('type', 'submit')
                     button.setAttribute('class', 'btForm btTable')
                     button.setAttribute('style', 'width: 100%')
 
-                    for (let key in data[i]) {
+                    for (let key in data[a]) {
                         if (key == 'cod') {
+                            let i = document.createElement('i')
                             if (a == 0) {
-                                button.setAttribute('onclick', `selectById(${data[i][key]})`)
+                                button.setAttribute('onclick', `selectById(${data[a][key]})`)
+                                i.setAttribute('class', 'fa-solid fa-pen-to-square')
+                                button.insertAdjacentElement('beforeend', i)
                             } else {
-                                button.setAttribute('onclick', `delete(${data[i][key]})`)
+                                button.setAttribute('onclick', `deleteById(${data[a][key]})`)
+                                i.setAttribute('class', 'fa-solid fa-trash')
+                                button.insertAdjacentElement('beforeend', i)
                             }
                         }
                     }
@@ -58,12 +60,12 @@ function selectAll() {
             }
         })
         .catch(error => {
-            console.error('Erro:', error);
+            console.error('Erro:', error)
         });
 }
 
 function selectById(cod) {
-    const url = `http://localhost:8080/AGIS/curso/${cod}`;
+    const url = `http://localhost:8080/AGIS/curso/${cod}`
 
     const configuracaoRequisicao = {
         method: 'GET',
@@ -72,24 +74,20 @@ function selectById(cod) {
     fetch(url, configuracaoRequisicao)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`)
             }
-            return response.json();
+            return response.json()
         })
         .then(data => {
-            let campos = document.querySelectorAll('.crudForm input[name]')
-            const vals = []
-
-            for (let key in data) {
-                vals.push(data[key])
-            }
-
-            for (let a = 0; a < campos.length; a++) {
-                campos[a].value = vals[a]
-            }
+            document.querySelector('input[name="cod"]').value = data.cod
+            document.querySelector('input[name="nome"]').value = data.nome
+            document.querySelector('input[name="cargaHoraria"]').value = data.cargaHorario
+            document.querySelector('input[name="sigla"]').value = data.sigla
+            document.querySelector('input[name="enade"]').value = data.enade
+            document.querySelector('#select').value = data.turno
         })
         .catch(error => {
-            console.error('Erro:', error);
+            console.error('Erro:', error)
         });
 }
 
@@ -102,7 +100,7 @@ function insert() {
             cargaHorario: document.querySelector('input[name="cargaHoraria"]').value,
             sigla: document.querySelector('input[name="sigla"]').value,
             enade: document.querySelector('input[name="enade"]').value,
-            turno: document.querySelector('input[name="turno"]').value
+            turno: document.querySelector('[name="turno"]').value
         }),
         headers: {
             'Content-type': 'application/json',
@@ -110,18 +108,18 @@ function insert() {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`)
             }
-            return response.json();
+            return response.json()
         })
         .then(data => {
-            console.log('Resposta:', data);
+            console.log('Resposta:', data)
             limpaCampos()
             removeTable()
             selectAll()
         })
         .catch(error => {
-            console.error('Erro:', error);
+            console.error('Erro:', error)
         });
 }
 
@@ -135,21 +133,45 @@ function update() {
             cargaHorario: document.querySelector('input[name="cargaHoraria"]').value,
             sigla: document.querySelector('input[name="sigla"]').value,
             enade: document.querySelector('input[name="enade"]').value,
-            turno: document.querySelector('input[name="turno"]').value
+            turno: document.querySelector('[name="turno"]').value
         }),
         headers: {
-            'Content-type': 'application/json',
+            'Content-type': 'application/json'
         },
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`)
             }
             return response.json();
         })
         .then(data => {
-            console.log('Resposta:', data);
+            console.log('Resposta:', data)
             limpaCampos()
+            removeTable()
+            selectAll()
+        })
+        .catch(error => {
+            console.error('Erro:', error)
+        });
+}
+
+function deleteById(cod) {
+    const url = `http://localhost:8080/AGIS/curso/${cod}`
+
+    const configuracaoRequisicao = {
+        method: 'DELETE',
+    };
+
+    fetch(url, configuracaoRequisicao)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`)
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
             removeTable()
             selectAll()
         })
@@ -168,4 +190,7 @@ function removeTable() {
 function limpaCampos() {
     let campos = document.querySelectorAll('input[name]')
     campos.forEach(t => { t.value = '' })
+
+    let selects = document.querySelectorAll('select')
+    selects.forEach(s => { s.value = 'default' })
 }

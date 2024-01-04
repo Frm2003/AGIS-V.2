@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.fatec.AGIS.dto.CursoDto;
 import com.br.fatec.AGIS.model.Curso;
 import com.br.fatec.AGIS.service.CursoService;
 
@@ -42,15 +43,14 @@ public class CursoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Curso> insert(@RequestBody @Valid Curso curso) {
-		System.out.println(curso);
-		return ResponseEntity.status(HttpStatus.OK).body(cursoService.insert(curso));
+	public ResponseEntity<Curso> insert(@RequestBody @Valid CursoDto cursoDto) {
+		return ResponseEntity.status(HttpStatus.OK).body(cursoService.insert(cursoDto));
 	}
 
 	@PutMapping("/{cod}")
-	public ResponseEntity<Object> update(@PathVariable(value = "cod") Long cod, @RequestBody @Valid Curso curso) {
+	public ResponseEntity<Object> update(@PathVariable(value = "cod") Long cod, @RequestBody @Valid CursoDto cursoDto) {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(cursoService.update(cod, curso));
+			return ResponseEntity.status(HttpStatus.OK).body(cursoService.update(cod, cursoDto));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
