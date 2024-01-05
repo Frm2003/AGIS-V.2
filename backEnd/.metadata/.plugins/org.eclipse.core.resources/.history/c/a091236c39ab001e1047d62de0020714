@@ -1,0 +1,12 @@
+package com.br.fatec.AGIS.dto;
+
+public record ProfessorDto(
+		String titulacao,
+		String cpf,
+		String nome, 
+		LocalDate dataNasc,
+		String emailPessoal,
+		String emailCorp
+) {
+
+}

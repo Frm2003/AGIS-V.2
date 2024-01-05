@@ -1,0 +1,11 @@
+package com.br.fatec.AGIS.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.br.fatec.AGIS.model.Usuario;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+	
+	@Query(value = "select count(tipo_entidade) from Usuario where tipo_entidade = 'P'", nativeQuery = true)
+	
+}

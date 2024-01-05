@@ -4,14 +4,17 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import lombok.NoArgsConstructor;
 
 @Entity
+@DiscriminatorColumn(name = "tipo_entidade", discriminatorType = DiscriminatorType.STRING, length = 1)
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_entidade")
 public class Usuario {
 	@Id
 	@Column(nullable = false, unique = true, length = 11)

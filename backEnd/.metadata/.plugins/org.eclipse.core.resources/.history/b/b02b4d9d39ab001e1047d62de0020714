@@ -1,0 +1,15 @@
+package com.br.fatec.AGIS.dto;
+
+import java.time.LocalDate;
+
+public record ProfessorDto(
+		Long cod,
+		String titulacao,
+		String cpf,
+		String nome, 
+		LocalDate dataNasc,
+		String emailPessoal,
+		String emailCorp
+) {
+
+}

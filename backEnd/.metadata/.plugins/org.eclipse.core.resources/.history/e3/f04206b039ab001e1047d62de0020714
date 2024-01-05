@@ -1,0 +1,18 @@
+package com.br.fatec.AGIS.dto;
+
+import java.time.LocalDate;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public record ProfessorDto(
+		Long cod,
+		@NotBlank @Size(max = 30) String titulacao,
+		@NotBlank @Size(max = 11) String cpf,
+		@NotBlank @Size(max = 30)String nome, 
+		LocalDate dataNasc,
+		String emailPessoal,
+		String emailCorp
+) {
+
+}
